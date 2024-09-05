@@ -68,11 +68,11 @@ echo "CONFIG_PACKAGE_openssh-sftp-server=y" >> ./.config
 
 # 添加kiddin6源的部分软件包
 # 图像化界面quickstart
-# echo "CONFIG_PACKAGE_quickstart=y" >> ./.config
-# echo "CONFIG_PACKAGE_luci-app-quickstart=y" >> ./.config
+ echo "CONFIG_PACKAGE_quickstart=y" >> ./.config
+ echo "CONFIG_PACKAGE_luci-app-quickstart=y" >> ./.config
 
 # 图形化流量监控
 echo "CONFIG_PACKAGE_luci-app-wrtbwmon=y" >> ./.config
 
 # 大鹅luci-app-daed
-# echo "CONFIG_PACKAGE_luci-app-daed=y" >> ./.config
+ echo "CONFIG_PACKAGE_luci-app-daed=y" >> ./.config
