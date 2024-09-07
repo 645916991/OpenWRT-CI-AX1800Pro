@@ -34,7 +34,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        # TARGET: [IPQ60XX-WIFI-YES, IPQ60XX-WIFI-NO, IPQ807X-WIFI-YES, IPQ807X-WIFI-NO]
+        # TARGET: [IPQ60XX-WIFI-YES]
         TARGET: [IPQ60XX-WIFI-YES]
         SOURCE: [VIKINGYFY/immortalwrt]
 
@@ -46,9 +46,9 @@ jobs:
       #默认主题
       WRT_THEME: argon
       #默认主机名
-      WRT_NAME: AX1800Pro
+      WRT_NAME: OpenWrt
       #默认WIFI名
-      WRT_WIFI: AX1800Pro
+      WRT_WIFI: D5647A
       #默认地址
       WRT_IP: 192.168.68.1
       #默认密码，仅作提示，修改无用
