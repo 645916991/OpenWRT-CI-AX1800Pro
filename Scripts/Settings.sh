@@ -10,6 +10,20 @@ CFG_FILE="./package/base-files/files/bin/config_generate"
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
+
+# 设置wifi加密方式为psk2+ccmp,wifi密码为88888889
+sed -i 's/encryption=none/encryption=psk2+ccmp/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.default_radio${devidx}.encryption=psk2+ccmp/a\\t\t\tset wireless.default_radio${devidx}.key=QQ858952311' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
+# 设置无线的国家代码为CN,wifi的默认功率为20
+sed -i 's/country=US/country=CN/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.radio${devidx}.disabled=0/a\\t\t\tset wireless.radio${devidx}.txpower=20' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
+# 设置wan口上网方式为PPPOE，本地编译时在文件的第86行左右
+ sed -i 's/2:-dhcp/2:-pppoe/g' package/base-files/files/lib/functions/uci-defaults.sh
+# 设置PPPOE上网的账号和密码,本地编译时在文件的第182和183行左右
+ sed -i 's/username='"'"'username'"'"'/username='"'"'601'"'"'/g; s/password='"'"'password'"'"'/password='"'"'18639812928'"'"'/g' package/base-files/files/bin/config_generate
+
 #修改默认时区
 sed -i "s/timezone='.*'/timezone='CST-8'/g" $CFG_FILE
 sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" $CFG_FILE
