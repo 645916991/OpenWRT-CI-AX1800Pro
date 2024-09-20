@@ -89,4 +89,4 @@ echo "CONFIG_PACKAGE_openssh-sftp-server=y" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-wrtbwmon=y" >> ./.config
 
 # 大鹅luci-app-daed
- echo "CONFIG_PACKAGE_luci-app-daed=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci-app-daed=y" >> ./.config
