@@ -52,13 +52,8 @@ git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 if [[ $WRT_REPO != *"lede"* ]]; then
 	UPDATE_PACKAGE "daed" "QiuSimons/luci-app-daed" "master"
-	#UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
- 	#使用不良0 的clashapi homeproxy 无法显示需要开启无痕
- 	UPDATE_PACKAGE "homeproxy" "bulianglin/homeproxy" "master"
-	UPDATE_PACKAGE "mihomo" "morytyann/OpenWrt-mihomo" "main" "pkg"
+	UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
 
-	UPDATE_PACKAGE "alpha" "derisamedia/luci-theme-alpha" "master"
-	UPDATE_PACKAGE "alpha-config" "animegasan/luci-app-alpha-config" "master"
 fi
 
 if [[ $WRT_REPO == *"openwrt-6.x"* ]]; then
