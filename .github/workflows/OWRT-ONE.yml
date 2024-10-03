@@ -3,9 +3,11 @@ name: OWRT-ONE
 
 #CI计划
 on:
-  #自动编译：每天早上4点
-  #schedule:
-    #- cron: 0 20 * * *
+  #自动编译：当Auto-Clean运行完成后
+  #workflow_run:
+    #workflows: ["Auto-Clean"]
+    #types:
+      #- completed
   #手动编译
   workflow_dispatch:
     inputs:
@@ -24,7 +26,7 @@ permissions: write-all
 
 #CI任务
 jobs:
-  wrt_config:
+  config:
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
     with:
