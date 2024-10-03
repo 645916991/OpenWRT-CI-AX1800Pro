@@ -37,9 +37,6 @@ on:
       WRT_TEST:
         required: false
         type: string
-      WRT_DESCRIPTION:
-        required: true
-        type: string
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -55,7 +52,7 @@ env:
   WRT_TEST: ${{inputs.WRT_TEST}}
 
 jobs:
-  wrt_core:
+  core:
     name: ${{inputs.WRT_SOURCE}}
     runs-on: ubuntu-latest
     steps:
@@ -118,17 +115,9 @@ jobs:
         run: |
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 
-      - name: Check Patches
-        run: |
-          if [ -f "$GITHUB_WORKSPACE/Patches/Patches.sh" ]; then
-            $GITHUB_WORKSPACE/Patches/Patches.sh
-          else
-            echo "No patches need to be installed!"
-          fi
-
       - name: Check Caches
-        if: env.WRT_TEST != 'true'
         id: check-cache
+        if: env.WRT_TEST != 'true'
         uses: actions/cache@main
         with:
           key: ${{env.WRT_TARGET}}-${{env.WRT_VER}}-${{env.WRT_HASH}}
@@ -161,7 +150,6 @@ jobs:
           cd ./wrt/
 
           $GITHUB_WORKSPACE/Scripts/feeds.sh
-
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -182,7 +170,7 @@ jobs:
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
-          make defconfig
+          make defconfig -j$(nproc)
 
       - name: Download Packages
         if: env.WRT_TEST != 'true'
@@ -196,7 +184,7 @@ jobs:
         run: |
           cd ./wrt/
 
-          make -j$(nproc) || make -j1 V=s
+          make -j$(nproc) || make -j$(nproc) V=s
 
       - name: Machine Information
         run: |
@@ -237,13 +225,10 @@ jobs:
           tag_name: ${{env.WRT_TARGET}}_${{env.WRT_VER}}_${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
           body: |
-            这是个平台固件包，内含多个设备！
-            请注意选择你需要的设备固件！
+            这是个京东云亚瑟AX1800设备固件！
             不要问，刷就完事了！
 
-            **固件说明：** ${{inputs.WRT_DESCRIPTION}}
-
-            MTK和QCA全系带开源硬件加速，别问了！
+            带开源硬件加速，别问了！
 
             源码：${{env.WRT_REPO}}
             分支：${{env.WRT_BRANCH}}
