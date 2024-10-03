@@ -10,7 +10,7 @@ on:
         default: 'MEDIATEK'
         required: true
         type: choice
-        options: [ROCKCHIP, X86, IPQ60XX-WIFI-YES]
+        options: [Nanopc-T4, X86, IPQ60XX]
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
         required: true
