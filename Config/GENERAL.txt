@@ -69,7 +69,7 @@ CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-diskman=y
 #网络唤醒++
 CONFIG_PACKAGE_luci-app-wolplus=y
-CONFIG_PACKAGE_luci-app-tailscale=y
+CONFIG_PACKAGE_luci-app-tailscale=n
 #定时重启
 CONFIG_PACKAGE_luci-app-autoreboot=y
 #进阶设置
