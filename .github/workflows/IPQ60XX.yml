@@ -1,21 +1,19 @@
 #CI项目
-name: QCA-ALL
+name: IPQ60XX
 
 #CI计划
 on:
-  #自动编译：每天早上4点
-  # schedule:
-  #   - cron: 0 20 * * *
+  #自动编译：当Auto-Clean运行完成后
+  workflow_run:
+    workflows: ["Auto-Clean"]
+    types:
+      - completed
   #手动编译
   workflow_dispatch:
     inputs:
       PACKAGE:
         description: '手动调整插件包，仅限一个。'
         required: false
-        type: string
-      DESCRIPTION:
-        description: '固件说明信息'
-        required: true
         type: string
       TEST:
         description: '仅输出配置文件，不编译固件。'
@@ -28,13 +26,12 @@ permissions: write-all
 
 #CI任务
 jobs:
-  wrt_config:
+  config:
     name: ${{matrix.TARGET}}
     strategy:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        # TARGET: [IPQ60XX-WIFI-YES]
         TARGET: [IPQ60XX-WIFI-YES]
         SOURCE: [VIKINGYFY/immortalwrt]
 
@@ -63,5 +60,3 @@ jobs:
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_TEST: ${{inputs.TEST}}
-      # 固件说明
-      WRT_DESCRIPTION: ${{inputs.DESCRIPTION}}
