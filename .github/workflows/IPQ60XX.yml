@@ -45,7 +45,7 @@ jobs:
       #默认主机名
       WRT_NAME: OpenWrt
       #默认WIFI名
-      WRT_WIFI: D5647A
+      WRT_WIFI: JDCwifi_90E1
       #默认地址
       WRT_IP: 192.168.68.1
       #默认密码，仅作提示，修改无用
